@@ -1,0 +1,29 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: Wrong Name
+  city: This City
+  venue: MyString
+  dates:  '(''<%= Date.today %>'' , ''<%= Date.today+2.days %>'')' 
+  schedule: '(''<%= Time.now %>'' , ''<%= Time.now+480.minutes %>'')' 
+  seats: 1
+  unit_price: 9.99
+  venue_map_link: MyString
+  description: MyText
+  terms: MyText
+  seo_meta_keywords: ['keyword']
+  seo_meta_description: ['description']
+
+two:
+  name: The Right Name Is This
+  city: That City
+  venue: MyString
+  dates:  '(''<%= Date.today %>'' , ''<%= Date.today+2.days %>'')' 
+  schedule: '(''<%= Time.now %>'' , ''<%= Time.now+480.minutes %>'')' 
+  seats: 1
+  unit_price: 9.99
+  venue_map_link: MyString
+  description: MyText
+  terms: MyText
+  seo_meta_keywords: ['keyword']
+  seo_meta_description: ['description']

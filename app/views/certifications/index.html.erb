@@ -1,0 +1,47 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Certifications</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>City</th>
+      <th>Venue</th>
+      <th>Dates</th>
+      <th>Schedule</th>
+      <th>Seats</th>
+      <th>Unit price</th>
+      <th>Venue map link</th>
+      <th>Description</th>
+      <th>Terms</th>
+      <th>Slug</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @certifications.each do |certification| %>
+      <tr>
+        <td><%= certification.name %></td>
+        <td><%= certification.city %></td>
+        <td><%= certification.venue %></td>
+        <td><%= certification.dates %></td>
+        <td><%= certification.schedule %></td>
+        <td><%= certification.seats %></td>
+        <td><%= certification.unit_price %></td>
+        <td><%= certification.venue_map_link %></td>
+        <td><%= certification.description %></td>
+        <td><%= certification.terms %></td>
+        <td><%= certification.slug %></td>
+        <td><%= link_to 'Show', certification %></td>
+        <td><%= link_to 'Edit', edit_certification_path(certification) %></td>
+        <td><%= link_to 'Destroy', certification, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Certification', new_certification_path %>

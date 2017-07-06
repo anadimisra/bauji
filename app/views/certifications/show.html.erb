@@ -1,0 +1,59 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @certification.name %>
+</p>
+
+<p>
+  <strong>City:</strong>
+  <%= @certification.city %>
+</p>
+
+<p>
+  <strong>Venue:</strong>
+  <%= @certification.venue %>
+</p>
+
+<p>
+  <strong>Dates:</strong>
+  <%= @certification.dates %>
+</p>
+
+<p>
+  <strong>Schedule:</strong>
+  <%= @certification.schedule %>
+</p>
+
+<p>
+  <strong>Seats:</strong>
+  <%= @certification.seats %>
+</p>
+
+<p>
+  <strong>Unit price:</strong>
+  <%= @certification.unit_price %>
+</p>
+
+<p>
+  <strong>Venue map link:</strong>
+  <%= @certification.venue_map_link %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @certification.description %>
+</p>
+
+<p>
+  <strong>Terms:</strong>
+  <%= @certification.terms %>
+</p>
+
+<p>
+  <strong>Slug:</strong>
+  <%= @certification.slug %>
+</p>
+
+<%= link_to 'Edit', edit_certification_path(@certification) %> |
+<%= link_to 'Back', certifications_path %>
