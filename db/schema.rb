@@ -10,31 +10,45 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170525151116) do
+ActiveRecord::Schema.define(version: 20170708125356) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "certifications", force: :cascade do |t|
     t.string "name", limit: 100, default: "", null: false
-    t.string "city", limit: 100, default: "", null: false
-    t.string "venue", limit: 100, default: "", null: false
-    t.daterange "dates", null: false
-    t.tsrange "schedule", null: false
-    t.integer "seats", default: 30, null: false
-    t.decimal "unit_price", precision: 9, scale: 2, default: "42499.0", null: false
-    t.string "venue_map_link", null: false
-    t.string "description", limit: 250, default: "", null: false
+    t.text "description", default: "", null: false
     t.text "terms", null: false
     t.string "seo_meta_keywords", null: false, array: true
     t.string "seo_meta_description", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["city"], name: "index_certifications_on_city"
-    t.index ["dates"], name: "index_certifications_on_dates"
-    t.index ["name"], name: "index_certifications_on_name"
-    t.index ["schedule"], name: "index_certifications_on_schedule"
-    t.index ["seats"], name: "index_certifications_on_seats"
+  end
+
+  create_table "coupons", force: :cascade do |t|
+    t.string "code", limit: 8, null: false
+    t.decimal "percentage", precision: 5, scale: 4, null: false
+    t.decimal "max_value", precision: 6, scale: 2, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["code"], name: "index_coupons_on_code", unique: true
+    t.index ["max_value"], name: "index_coupons_on_max_value"
+    t.index ["percentage"], name: "index_coupons_on_percentage"
+  end
+
+  create_table "discounts", force: :cascade do |t|
+    t.integer "number", default: 5, null: false
+    t.date "valid_till", null: false
+    t.boolean "active", default: false, null: false
+    t.bigint "workshop_id"
+    t.bigint "coupon_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["active"], name: "index_discounts_on_active"
+    t.index ["coupon_id"], name: "index_discounts_on_coupon_id"
+    t.index ["number"], name: "index_discounts_on_number"
+    t.index ["valid_till"], name: "index_discounts_on_valid_till"
+    t.index ["workshop_id"], name: "index_discounts_on_workshop_id"
   end
 
   create_table "friendly_id_slugs", force: :cascade do |t|
@@ -65,6 +79,26 @@ ActiveRecord::Schema.define(version: 20170525151116) do
     t.index ["name"], name: "index_job_posts_on_name", unique: true
   end
 
+  create_table "learners", force: :cascade do |t|
+    t.string "email", limit: 50, null: false
+    t.string "first_name", limit: 30, null: false
+    t.string "middle_name", limit: 30
+    t.string "last_name", null: false
+    t.string "mobile", limit: 10, null: false
+    t.string "country_code", limit: 3, null: false
+    t.string "company", limit: 50, null: false
+    t.string "job_role", limit: 30
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["company"], name: "index_learners_on_company"
+    t.index ["country_code"], name: "index_learners_on_country_code"
+    t.index ["email"], name: "index_learners_on_email", unique: true
+    t.index ["first_name"], name: "index_learners_on_first_name"
+    t.index ["last_name"], name: "index_learners_on_last_name"
+    t.index ["middle_name"], name: "index_learners_on_middle_name"
+    t.index ["mobile"], name: "index_learners_on_mobile"
+  end
+
   create_table "roles", force: :cascade do |t|
     t.string "name"
     t.string "resource_type"
@@ -74,6 +108,32 @@ ActiveRecord::Schema.define(version: 20170525151116) do
     t.index ["name", "resource_type", "resource_id"], name: "index_roles_on_name_and_resource_type_and_resource_id"
     t.index ["name"], name: "index_roles_on_name"
     t.index ["resource_type", "resource_id"], name: "index_roles_on_resource_type_and_resource_id"
+  end
+
+  create_table "tickets", force: :cascade do |t|
+    t.string "registration_id"
+    t.string "payment_gateway"
+    t.string "payment_gateway_transaction_id"
+    t.decimal "offer_price"
+    t.decimal "sale_price"
+    t.string "status"
+    t.bigint "workshop_id"
+    t.bigint "learner_id"
+    t.bigint "discount_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["discount_id"], name: "index_tickets_on_discount_id"
+    t.index ["learner_id"], name: "index_tickets_on_learner_id"
+    t.index ["registration_id"], name: "index_tickets_on_registration_id", unique: true
+    t.index ["status"], name: "index_tickets_on_status"
+    t.index ["workshop_id"], name: "index_tickets_on_workshop_id"
+  end
+
+  create_table "transaction_statuses", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_transaction_statuses_on_name", unique: true
   end
 
   create_table "users", force: :cascade do |t|
@@ -109,4 +169,35 @@ ActiveRecord::Schema.define(version: 20170525151116) do
     t.index ["user_id"], name: "index_users_roles_on_user_id"
   end
 
+  create_table "workshops", force: :cascade do |t|
+    t.string "venue", limit: 50, default: ""
+    t.string "city", limit: 50, default: "", null: false
+    t.string "country", limit: 30, default: "", null: false
+    t.string "venue_map_link"
+    t.text "description"
+    t.date "starts_on", null: false
+    t.date "ends_on", null: false
+    t.datetime "starts_at", null: false
+    t.datetime "ends_at", null: false
+    t.integer "seats", default: 25, null: false
+    t.decimal "ticket_price", precision: 9, scale: 2, default: "41200.0", null: false
+    t.string "seo_meta_keywords", null: false, array: true
+    t.string "seo_meta_description", null: false
+    t.bigint "certification_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["certification_id"], name: "index_workshops_on_certification_id"
+    t.index ["city"], name: "index_workshops_on_city"
+    t.index ["country"], name: "index_workshops_on_country"
+    t.index ["ends_on"], name: "index_workshops_on_ends_on"
+    t.index ["starts_on"], name: "index_workshops_on_starts_on"
+    t.index ["ticket_price"], name: "index_workshops_on_ticket_price"
+  end
+
+  add_foreign_key "discounts", "coupons"
+  add_foreign_key "discounts", "workshops"
+  add_foreign_key "tickets", "discounts"
+  add_foreign_key "tickets", "learners"
+  add_foreign_key "tickets", "workshops"
+  add_foreign_key "workshops", "certifications"
 end

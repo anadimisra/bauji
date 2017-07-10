@@ -22,8 +22,10 @@ gem 'uglifier', '>= 1.3.0'
 gem 'font-awesome-sass', '~> 4.7.0'
 gem 'normalize-rails', '~> 4.1.1'
 gem 'modernizr-rails', '~> 2.7.1'
+gem 'bootstrap-sass', '~> 3.3.7'
 gem 'recaptcha', '~> 4.3.1'
 gem 'simple_form', '~> 3.5.0'
+gem 'country_select', '~> 3.0'
 
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'
@@ -76,6 +78,7 @@ gem 'friendly_id', '~> 5.2.1'
 
 # generate PDFs for download
 gem 'wicked_pdf', '~> 1.1'
+gem 'wkhtmltopdf-binary', '~> 0.12.3.1'
 
 # audit log all actions
 gem 'paper_trail', '~> 7.0.3'
@@ -93,6 +96,15 @@ gem 'validates_timeliness', '~> 4.0.2'
 
 # Nothing ever dies!! do not allow deletion of records
 gem 'paranoia', '~> 2.3.1' 
+
+#better display date ranges 
+gem 'time_will_tell', '~> 0.1.0'
+
+# format money
+gem 'money', '~> 6.9'
+
+# make concurrency easy
+gem 'wisper-celluloid', '~> 0.0.1'
 
 # Backup Database
 # gem 'backup', '~> 4.4'

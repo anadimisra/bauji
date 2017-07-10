@@ -1,0 +1,53 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Workshops</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Venue</th>
+      <th>City</th>
+      <th>Country</th>
+      <th>Venue map link</th>
+      <th>Description</th>
+      <th>Start on</th>
+      <th>End on</th>
+      <th>Starts at</th>
+      <th>Ends at</th>
+      <th>Seats</th>
+      <th>Ticket price</th>
+      <th>Seo meta keywords</th>
+      <th>Seo meta description</th>
+      <th>Certification</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @workshops.each do |workshop| %>
+      <tr>
+        <td><%= workshop.venue %></td>
+        <td><%= workshop.city %></td>
+        <td><%= workshop.country %></td>
+        <td><%= workshop.venue_map_link %></td>
+        <td><%= workshop.description %></td>
+        <td><%= workshop.starts_on %></td>
+        <td><%= workshop.ends_on %></td>
+        <td><%= workshop.starts_at %></td>
+        <td><%= workshop.ends_at %></td>
+        <td><%= workshop.seats %></td>
+        <td><%= workshop.ticket_price %></td>
+        <td><%= workshop.seo_meta_keywords %></td>
+        <td><%= workshop.seo_meta_description %></td>
+        <td><%= workshop.certification %></td>
+        <td><%= link_to 'Show', workshop %></td>
+        <td><%= link_to 'Edit', edit_workshop_path(workshop) %></td>
+        <td><%= link_to 'Destroy', workshop, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Workshop', new_workshop_path %>

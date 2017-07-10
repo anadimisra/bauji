@@ -41,6 +41,8 @@ GEM
     addressable (2.5.1)
       public_suffix (~> 2.0, >= 2.0.2)
     arel (8.0.0)
+    autoprefixer-rails (6.4.0.1)
+      execjs
     bcrypt (3.1.11)
     better_errors (2.1.1)
       coderay (>= 1.0.0)
@@ -49,6 +51,9 @@ GEM
     bindex (0.5.0)
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
+    bootstrap-sass (3.3.7)
+      autoprefixer-rails (>= 5.2.1)
+      sass (>= 3.3.4)
     buftok (0.2.0)
     builder (3.2.3)
     byebug (9.0.6)
@@ -61,6 +66,23 @@ GEM
       rack (>= 1.0.0)
       rack-test (>= 0.5.4)
       xpath (~> 2.0)
+    celluloid (0.17.3)
+      celluloid-essentials
+      celluloid-extras
+      celluloid-fsm
+      celluloid-pool
+      celluloid-supervision
+      timers (>= 4.1.1)
+    celluloid-essentials (0.20.5)
+      timers (>= 4.1.1)
+    celluloid-extras (0.20.5)
+      timers (>= 4.1.1)
+    celluloid-fsm (0.20.5)
+      timers (>= 4.1.1)
+    celluloid-pool (0.20.5)
+      timers (>= 4.1.1)
+    celluloid-supervision (0.20.6)
+      timers (>= 4.1.1)
     childprocess (0.7.0)
       ffi (~> 1.0, >= 1.0.11)
     climate_control (0.2.0)
@@ -76,6 +98,14 @@ GEM
     coffee-script-source (1.12.2)
     concurrent-ruby (1.0.5)
     connection_pool (2.2.1)
+    countries (2.0.8)
+      i18n_data (~> 0.7.0)
+      money (~> 6.7)
+      sixarm_ruby_unaccent (~> 1.1)
+      unicode_utils (~> 1.4)
+    country_select (3.0.0)
+      countries (~> 2.0)
+      sort_alphabetical (~> 1.0)
     cucumber (2.4.0)
       builder (>= 2.1.2)
       cucumber-core (~> 1.5.0)
@@ -132,6 +162,7 @@ GEM
       actionpack (>= 4.1, < 5.2)
       activesupport (>= 4.1, < 5.2)
     hashie (3.5.5)
+    hitimes (1.2.4)
     http (2.2.2)
       addressable (~> 2.3)
       http-cookie (~> 1.0)
@@ -142,6 +173,7 @@ GEM
     http-form_data (1.0.3)
     http_parser.rb (0.6.0)
     i18n (0.8.1)
+    i18n_data (0.7.0)
     jbuilder (2.6.4)
       activesupport (>= 3.0.0)
       multi_json (>= 1.2)
@@ -177,6 +209,8 @@ GEM
     mini_portile2 (2.1.0)
     minitest (5.10.2)
     modernizr-rails (2.7.1)
+    money (6.9.0)
+      i18n (>= 0.6.4, < 0.9)
     mono_logger (1.1.0)
     multi_json (1.12.1)
     multi_test (0.1.2)
@@ -344,7 +378,10 @@ GEM
       tilt (~> 2.0)
     sitemap_generator (5.3.1)
       builder (~> 3.0)
+    sixarm_ruby_unaccent (1.1.2)
     slop (3.6.0)
+    sort_alphabetical (1.1.0)
+      unicode_utils (>= 1.2.2)
     spring (2.0.2)
       activesupport (>= 4.2)
     spring-watcher-listen (2.0.1)
@@ -360,7 +397,11 @@ GEM
     thor (0.19.4)
     thread_safe (0.3.6)
     tilt (2.0.7)
+    time_will_tell (0.1.0)
+      railties (>= 3.2)
     timeliness (0.3.8)
+    timers (4.1.1)
+      hitimes
     tinymce-rails (4.6.2)
       railties (>= 3.1.1)
     turbolinks (5.0.1)
@@ -383,6 +424,7 @@ GEM
     unf (0.1.4)
       unf_ext
     unf_ext (0.0.7.4)
+    unicode_utils (1.4.0)
     validates_timeliness (4.0.2)
       timeliness (~> 0.3.7)
     vegas (0.1.11)
@@ -401,6 +443,11 @@ GEM
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.2)
     wicked_pdf (1.1.0)
+    wisper (1.6.1)
+    wisper-celluloid (0.0.1)
+      celluloid
+      wisper
+    wkhtmltopdf-binary (0.12.3.1)
     xpath (2.0.0)
       nokogiri (~> 1.3)
     yml_reader (0.7)
@@ -412,10 +459,12 @@ DEPENDENCIES
   bcrypt (~> 3.1.7)
   better_errors
   binding_of_caller
+  bootstrap-sass (~> 3.3.7)
   byebug
   cancancan (~> 2.0)
   capybara (~> 2.13.0)
   coffee-rails (~> 4.2)
+  country_select (~> 3.0)
   cucumber (~> 2.4)
   devise (~> 4.3.0)
   enum_help (~> 0.0.17)
@@ -431,6 +480,7 @@ DEPENDENCIES
   listen (>= 3.0.5, < 3.2)
   meta_request
   modernizr-rails (~> 2.7.1)
+  money (~> 6.9)
   normalize-rails (~> 4.1.1)
   omniauth (~> 1.6.1)
   omniauth-google-oauth2 (~> 0.5.0)
@@ -457,6 +507,7 @@ DEPENDENCIES
   sitemap_generator (~> 5.3.1)
   spring
   spring-watcher-listen (~> 2.0.0)
+  time_will_tell (~> 0.1.0)
   tinymce-rails (~> 4.6.2)
   turbolinks (~> 5)
   twitter (~> 6.1)
@@ -466,6 +517,8 @@ DEPENDENCIES
   watir (~> 6.3)
   web-console (>= 3.3.0)
   wicked_pdf (~> 1.1)
+  wisper-celluloid (~> 0.0.1)
+  wkhtmltopdf-binary (~> 0.12.3.1)
 
 BUNDLED WITH
    1.12.5

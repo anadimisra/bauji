@@ -1,0 +1,44 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @learner.email %>
+</p>
+
+<p>
+  <strong>First name:</strong>
+  <%= @learner.first_name %>
+</p>
+
+<p>
+  <strong>Middle name:</strong>
+  <%= @learner.middle_name %>
+</p>
+
+<p>
+  <strong>Last name:</strong>
+  <%= @learner.last_name %>
+</p>
+
+<p>
+  <strong>Mobile:</strong>
+  <%= @learner.mobile %>
+</p>
+
+<p>
+  <strong>Country code:</strong>
+  <%= @learner.country_code %>
+</p>
+
+<p>
+  <strong>Company:</strong>
+  <%= @learner.company %>
+</p>
+
+<p>
+  <strong>Job role:</strong>
+  <%= @learner.job_role %>
+</p>
+
+<%= link_to 'Edit', edit_learner_path(@learner) %> |
+<%= link_to 'Back', learners_path %>

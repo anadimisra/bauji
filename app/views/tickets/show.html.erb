@@ -1,0 +1,49 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Registration:</strong>
+  <%= @ticket.registration_id %>
+</p>
+
+<p>
+  <strong>Payment gateway:</strong>
+  <%= @ticket.payment_gateway %>
+</p>
+
+<p>
+  <strong>Payment gateway transaction:</strong>
+  <%= @ticket.payment_gateway_transaction_id %>
+</p>
+
+<p>
+  <strong>Offer price:</strong>
+  <%= @ticket.offer_price %>
+</p>
+
+<p>
+  <strong>Sale price:</strong>
+  <%= @ticket.sale_price %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @ticket.status %>
+</p>
+
+<p>
+  <strong>Discount:</strong>
+  <%= @ticket.discount %>
+</p>
+
+<p>
+  <strong>Workshop:</strong>
+  <%= @ticket.workshop %>
+</p>
+
+<p>
+  <strong>Learner:</strong>
+  <%= @ticket.learner %>
+</p>
+
+<%= link_to 'Edit', edit_ticket_path(@ticket) %> |
+<%= link_to 'Back', tickets_path %>

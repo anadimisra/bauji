@@ -6,41 +6,6 @@
 </p>
 
 <p>
-  <strong>City:</strong>
-  <%= @certification.city %>
-</p>
-
-<p>
-  <strong>Venue:</strong>
-  <%= @certification.venue %>
-</p>
-
-<p>
-  <strong>Dates:</strong>
-  <%= @certification.dates %>
-</p>
-
-<p>
-  <strong>Schedule:</strong>
-  <%= @certification.schedule %>
-</p>
-
-<p>
-  <strong>Seats:</strong>
-  <%= @certification.seats %>
-</p>
-
-<p>
-  <strong>Unit price:</strong>
-  <%= @certification.unit_price %>
-</p>
-
-<p>
-  <strong>Venue map link:</strong>
-  <%= @certification.venue_map_link %>
-</p>
-
-<p>
   <strong>Description:</strong>
   <%= @certification.description %>
 </p>
@@ -51,8 +16,13 @@
 </p>
 
 <p>
-  <strong>Slug:</strong>
-  <%= @certification.slug %>
+  <strong>Seo meta keywords:</strong>
+  <%= @certification.seo_meta_keywords %>
+</p>
+
+<p>
+  <strong>Seo meta description:</strong>
+  <%= @certification.seo_meta_description %>
 </p>
 
 <%= link_to 'Edit', edit_certification_path(@certification) %> |

@@ -1,0 +1,15 @@
+<%= simple_form_for(@discount) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :number %>
+    <%= f.input :valid_till %>
+    <%= f.input :active %>
+    <%= f.association :workshop %>
+    <%= f.association :coupon %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

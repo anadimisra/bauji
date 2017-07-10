@@ -1,0 +1,74 @@
+s<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Venue:</strong>
+  <%= @workshop.venue %>
+</p>
+
+<p>
+  <strong>City:</strong>
+  <%= @workshop.city %>
+</p>
+
+<p>
+  <strong>Country:</strong>
+  <%= @workshop.country %>
+</p>
+
+<p>
+  <strong>Venue map link:</strong>
+  <%= @workshop.venue_map_link %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @workshop.description %>
+</p>
+
+<p>
+  <strong>Start on:</strong>
+  <%= @workshop.starts_on %>
+</p>
+
+<p>
+  <strong>End on:</strong>
+  <%= @workshop.ends_on %>
+</p>
+
+<p>
+  <strong>Starts at:</strong>
+  <%= @workshop.starts_at %>
+</p>
+
+<p>
+  <strong>Ends at:</strong>
+  <%= @workshop.ends_at %>
+</p>
+
+<p>
+  <strong>Seats:</strong>
+  <%= @workshop.seats %>
+</p>
+
+<p>
+  <strong>Ticket price:</strong>
+  <%= @workshop.ticket_price %>
+</p>
+
+<p>
+  <strong>Seo meta keywords:</strong>
+  <%= @workshop.seo_meta_keywords %>
+</p>
+
+<p>
+  <strong>Seo meta description:</strong>
+  <%= @workshop.seo_meta_description %>
+</p>
+
+<p>
+  <strong>Certification:</strong>
+  <%= @workshop.certification %>
+</p>
+
+<%= link_to 'Edit', edit_workshop_path(@workshop) %> |
+<%= link_to 'Back', workshops_path %>
