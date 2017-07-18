@@ -180,7 +180,7 @@ ActiveRecord::Schema.define(version: 20170708125356) do
     t.datetime "starts_at", null: false
     t.datetime "ends_at", null: false
     t.integer "seats", default: 25, null: false
-    t.decimal "ticket_price", precision: 9, scale: 2, default: "41200.0", null: false
+    t.decimal "ticket_price", precision: 9, scale: 2, default: "35000.0", null: false
     t.string "seo_meta_keywords", null: false, array: true
     t.string "seo_meta_description", null: false
     t.bigint "certification_id"

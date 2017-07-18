@@ -11,7 +11,7 @@ class CreateWorkshops < ActiveRecord::Migration[5.1]
       t.datetime :starts_at, null: false
       t.datetime :ends_at, null: false
       t.integer :seats, null: false, default: 25
-      t.decimal :ticket_price, null: false, precision: 9, scale: 2, default: 41200.00
+      t.decimal :ticket_price, null: false, precision: 9, scale: 2, default: 35000.00
       t.string :seo_meta_keywords, array: true, null: false
       t.string :seo_meta_description, null: false
       t.belongs_to :certification, foreign_key: true

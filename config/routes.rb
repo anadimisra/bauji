@@ -1,9 +1,5 @@
 Rails.application.routes.draw do
 
-  resources :discounts
-  resources :coupons
-  resources :tickets
-  resources :learners
   resources :certifications
   resources :workshops
   devise_for :users

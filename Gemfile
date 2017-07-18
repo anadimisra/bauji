@@ -127,9 +127,10 @@ group :development, :test do
   gem 'rails_layout'
   gem 'better_errors'
   gem 'binding_of_caller'
-  gem 'cucumber', '~> 2.4'
+  gem 'cucumber-rails', '~> 1.5'
   gem 'page-object', '~> 2.1.1'
   gem 'watir', '~> 6.3'
+  gem 'database_cleaner', '~> 1.6.1'
   # Fixtures are messy!
   gem 'factory_girl_rails', '~> 4.8'
 end
