@@ -29,11 +29,11 @@ RSpec.describe CertificationsController, type: :controller do
   # Certification. As you add validations to Certification, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) {
-    skip("Add a hash of attributes valid for your model")
+    FactoryGirl.build(:certification).serializable_hash
   }
 
   let(:invalid_attributes) {
-    skip("Add a hash of attributes invalid for your model")
+    FactoryGirl.build(:invalid_certification).serializable_hash
   }
 
   # This should return the minimal set of values that should be in the session
@@ -97,14 +97,14 @@ RSpec.describe CertificationsController, type: :controller do
   describe "PUT #update" do
     context "with valid params" do
       let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
+        FactoryGirl.build(:new_valid_certification).serializable_hash
       }
 
       it "updates the requested certification" do
         certification = Certification.create! valid_attributes
         put :update, params: {id: certification.to_param, certification: new_attributes}, session: valid_session
         certification.reload
-        skip("Add assertions for updated state")
+        expect(certification.terms).to eql(FactoryGirl.build(:new_valid_certification).terms)
       end
 
       it "redirects to the certification" do

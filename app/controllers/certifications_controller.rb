@@ -69,6 +69,6 @@ class CertificationsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def certification_params
-      params.require(:certification).permit(:name, :description, :terms, :seo_meta_keywords, :seo_meta_description)
+      params.require(:certification).permit(:name, :description, :terms, :seo_meta_description, seo_meta_keywords: [])
     end
 end

@@ -127,7 +127,7 @@ group :development, :test do
   gem 'rails_layout'
   gem 'better_errors'
   gem 'binding_of_caller'
-  gem 'cucumber-rails', '~> 1.5'
+  gem 'cucumber-rails', '~> 1.5', :require => false
   gem 'page-object', '~> 2.1.1'
   gem 'watir', '~> 6.3'
   gem 'database_cleaner', '~> 1.6.1'
