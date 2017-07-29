@@ -1,7 +1,7 @@
 class Certification < ApplicationRecord
 	#extend FriendlyId
 
-	has_many :workshops
+	has_many :workshops, validate: false
 
 	validates :name, presence: true, length: {
 		minimum: 10,

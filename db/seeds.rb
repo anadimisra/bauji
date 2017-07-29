@@ -5,11 +5,3 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-transaction_statuses = TransactionStatus.create([
-			{name:'INITIATED'},{name:'AUTHORIZED'}, {name:'SUCCESS'}, {name: 'FAILED'}
-		]
-	)
-
-coupons = Coupon.create([
-		{ code: "EBIRD", max_value: 2500.00, percentage: 0.0625 },
-	])

@@ -21,8 +21,25 @@ module Bauji
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 5.1
     config.generators.test_framework :rspec
+
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
+ 
+ 		# Asset config stuff
+		config.assets.enabled = true
+		config.assets.paths << Rails.root.join('app', 'assets', 'fonts')
+		config.assets.paths << Rails.root.join('app', 'assets', 'docs')
+
+		# We are in India ofcourse :-) 
+		config.time_zone = 'Asia/Kolkata'
+	 	config.active_record.default_timezone = 'Asia/Kolkata'
+
+	 	#And we like to use UTF-8
+	 	Encoding.default_external = Encoding::UTF_8
+	 	config.encoding = "utf-8"
+
+	 	# Use SQL instead of AR schema dumper when creating the database
+		config.active_record.schema_format = :sql    
   end
 end

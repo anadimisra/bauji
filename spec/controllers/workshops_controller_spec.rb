@@ -29,11 +29,11 @@ RSpec.describe WorkshopsController, type: :controller do
   # Workshop. As you add validations to Workshop, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) {
-    skip("Add a hash of attributes valid for your model")
+    FactoryGirl.build(:workshop).serializable_hash
   }
 
   let(:invalid_attributes) {
-    skip("Add a hash of attributes invalid for your model")
+    FactoryGirl.build(:workshop, city: nil).serializable_hash
   }
 
   # This should return the minimal set of values that should be in the session
@@ -97,14 +97,14 @@ RSpec.describe WorkshopsController, type: :controller do
   describe "PUT #update" do
     context "with valid params" do
       let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
+        FactoryGirl.build(:workshop, city: "Bombay").serializable_hash
       }
 
       it "updates the requested workshop" do
         workshop = Workshop.create! valid_attributes
         put :update, params: {id: workshop.to_param, workshop: new_attributes}, session: valid_session
         workshop.reload
-        skip("Add assertions for updated state")
+        expect(workshop.city).to eql "Bombay"
       end
 
       it "redirects to the workshop" do

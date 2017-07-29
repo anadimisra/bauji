@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Available from:</strong>
+  <%= @offer.available_from %>
+</p>
+
+<p>
+  <strong>Available to:</strong>
+  <%= @offer.available_to %>
+</p>
+
+<p>
+  <strong>Discount:</strong>
+  <%= @offer.discount %>
+</p>
+
+<p>
+  <strong>Coupon:</strong>
+  <%= @offer.coupon %>
+</p>
+
+<%= link_to 'Edit', edit_offer_path(@offer) %> |
+<%= link_to 'Back', offers_path %>

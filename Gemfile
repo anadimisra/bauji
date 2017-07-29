@@ -104,7 +104,7 @@ gem 'time_will_tell', '~> 0.1.0'
 gem 'money', '~> 6.9'
 
 # make concurrency easy
-gem 'wisper-celluloid', '~> 0.0.1'
+# gem 'wisper-celluloid', '~> 0.0.1'
 
 # Backup Database
 # gem 'backup', '~> 4.4'
@@ -121,7 +121,7 @@ group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'rspec-rails', '~> 3.6'
   # Adds support for Capybara system testing and selenium driver
-  gem 'capybara', '~> 2.13.0'
+  # gem 'capybara', '~> 2.13.0'
   gem 'selenium-webdriver'
   gem 'pry-byebug'
   gem 'rails_layout'
@@ -133,6 +133,7 @@ group :development, :test do
   gem 'database_cleaner', '~> 1.6.1'
   # Fixtures are messy!
   gem 'factory_girl_rails', '~> 4.8'
+  gem 'ffaker', '~> 2.6'
 end
 
 group :development do

@@ -84,6 +84,7 @@ test: &test
 #
 production:
   <<: *default
+  username: <%= ENV['WEBADMIN_DATABASE_USERNAME'] %>
   schema_search_path: production
   password: <%= ENV['WEBADMIN_DATABASE_PASSWORD'] %>
 

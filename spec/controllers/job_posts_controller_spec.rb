@@ -29,11 +29,12 @@ RSpec.describe JobPostsController, type: :controller do
   # JobPost. As you add validations to JobPost, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) {
-    skip("Add a hash of attributes valid for your model")
+    #FactoryGirl.build(:job_post).serializable_hash
+    FactoryGirl.attributes_for(:job_post)
   }
 
   let(:invalid_attributes) {
-    skip("Add a hash of attributes invalid for your model")
+    FactoryGirl.attributes_for(:invalid_job_post)
   }
 
   # This should return the minimal set of values that should be in the session
@@ -74,13 +75,13 @@ RSpec.describe JobPostsController, type: :controller do
 
   describe "POST #create" do
     context "with valid params" do
-      it "creates a new JobPost" do
+      it "creates a new JobPost" do   
         expect {
           post :create, params: {job_post: valid_attributes}, session: valid_session
         }.to change(JobPost, :count).by(1)
       end
 
-      it "redirects to the created job_post" do
+      it "redirects to the created job_post" do    
         post :create, params: {job_post: valid_attributes}, session: valid_session
         expect(response).to redirect_to(JobPost.last)
       end
@@ -97,17 +98,18 @@ RSpec.describe JobPostsController, type: :controller do
   describe "PUT #update" do
     context "with valid params" do
       let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
+        #FactoryGirl.build(:new_job_post).serializable_hash
+        FactoryGirl.attributes_for(:new_job_post)
       }
 
-      it "updates the requested job_post" do
+      it "updates the requested job_post" do      
         job_post = JobPost.create! valid_attributes
         put :update, params: {id: job_post.to_param, job_post: new_attributes}, session: valid_session
         job_post.reload
-        skip("Add assertions for updated state")
+        expect(job_post.location).to eql("Pune")
       end
 
-      it "redirects to the job_post" do
+      it "redirects to the job_post" do      
         job_post = JobPost.create! valid_attributes
         put :update, params: {id: job_post.to_param, job_post: valid_attributes}, session: valid_session
         expect(response).to redirect_to(job_post)
@@ -115,7 +117,7 @@ RSpec.describe JobPostsController, type: :controller do
     end
 
     context "with invalid params" do
-      it "returns a success response (i.e. to display the 'edit' template)" do
+      it "returns a success response (i.e. to display the 'edit' template)" do      
         job_post = JobPost.create! valid_attributes
         put :update, params: {id: job_post.to_param, job_post: invalid_attributes}, session: valid_session
         expect(response).to be_success

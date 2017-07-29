@@ -25,7 +25,7 @@ class WorkshopsController < ApplicationController
   # POST /workshops.json
   def create
     workshop_hash = workshop_params.to_hash
-    workshop_hash[:venue_map_link] = CGI.escapeHTML workshop_hash[:venue_map_link]
+    workshop_hash[:venue_map_link] = CGI.escapeHTML workshop_hash[:venue_map_link] unless workshop_hash[:venue_map_link].nil?
     @workshop = Workshop.new(workshop_hash)
 
     respond_to do |format|
