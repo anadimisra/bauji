@@ -96,28 +96,27 @@ RSpec.describe WorkshopsController, type: :controller do
 
   describe "PUT #update" do
     context "with valid params" do
-      let(:new_attributes) {
-        FactoryGirl.build(:workshop, city: "Bombay").serializable_hash
-      }
-
       it "updates the requested workshop" do
-        workshop = FactoryGirl.build(:workshop)
-        put :update, params: {id: workshop.to_param, workshop: new_attributes}, session: valid_session
+        workshop = Workshop.create! valid_attributes
+        workshop.city = "Bombay"
+        put :update, params: {id: workshop.to_param, workshop: workshop.serializable_hash}, session: valid_session
         workshop.reload
         expect(workshop.city).to eql "Bombay"
       end
 
       it "redirects to the workshop" do
-        workshop = FactoryGirl.build(:workshop)
-        put :update, params: {id: workshop.to_param, workshop: new_attributes}, session: valid_session
+        workshop = Workshop.create! valid_attributes
+        workshop.city = "Bombay"
+        put :update, params: {id: workshop.to_param, workshop: workshop.serializable_hash}, session: valid_session
         expect(response).to redirect_to(workshop)
       end
     end
 
     context "with invalid params" do
       it "returns a success response (i.e. to display the 'edit' template)" do
-        workshop = FactoryGirl.build(:workshop)
-        put :update, params: {id: workshop.to_param, workshop: invalid_attributes}, session: valid_session
+        workshop = Workshop.create! valid_attributes
+        workshop.city = nil
+        put :update, params: {id: workshop.to_param, workshop: workshop.serializable_hash}, session: valid_session
         expect(response).to be_success
       end
     end
