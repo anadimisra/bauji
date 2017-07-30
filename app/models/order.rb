@@ -18,7 +18,7 @@ class Order < ApplicationRecord
   }
 
   validates :order_value, presence: true, numericality: {
-    greater_than_or_equal_to: 40000.00
+    greater_than_or_equal_to: 36000.00
   }
 
 end
