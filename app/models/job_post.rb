@@ -1,7 +1,9 @@
 class JobPost < ApplicationRecord
-	#extend FriendlyId
+	extend FriendlyId
 	resourcify
 
+	friendly_id :name, use: :slugged
+	
 	validates :name, presence: true, length: {
 		minimum: 10,
 		maximum: 50,
@@ -18,5 +20,5 @@ class JobPost < ApplicationRecord
 
 	validates :experience, :description, :skills, :active, :seo_meta_keywords, :seo_meta_description, presence: true
 	
-	#friendly_id :name, use: :slugged
+	
 end

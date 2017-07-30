@@ -580,7 +580,8 @@ CREATE TABLE certifications (
     seo_meta_keywords character varying[] NOT NULL,
     seo_meta_description character varying NOT NULL,
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    updated_at timestamp without time zone NOT NULL,
+    slug character varying
 );
 
 
@@ -716,7 +717,8 @@ CREATE TABLE job_posts (
     seo_meta_keywords character varying[] NOT NULL,
     seo_meta_description character varying(150) NOT NULL,
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    updated_at timestamp without time zone NOT NULL,
+    slug character varying
 );
 
 
@@ -999,7 +1001,8 @@ CREATE TABLE workshops (
     seo_meta_description character varying NOT NULL,
     certification_id bigint,
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    updated_at timestamp without time zone NOT NULL,
+    slug character varying
 );
 
 
@@ -1735,6 +1738,13 @@ CREATE UNIQUE INDEX index_certifications_on_name ON certifications USING btree (
 
 
 --
+-- Name: index_certifications_on_slug; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_certifications_on_slug ON certifications USING btree (slug);
+
+
+--
 -- Name: index_coupons_on_voucher_code; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -1802,6 +1812,13 @@ CREATE INDEX index_job_posts_on_location ON job_posts USING btree (location);
 --
 
 CREATE UNIQUE INDEX index_job_posts_on_name ON job_posts USING btree (name);
+
+
+--
+-- Name: index_job_posts_on_slug; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_job_posts_on_slug ON job_posts USING btree (slug);
 
 
 --
@@ -2015,6 +2032,13 @@ CREATE INDEX index_workshops_on_ends_on ON workshops USING btree (ends_on);
 
 
 --
+-- Name: index_workshops_on_slug; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_workshops_on_slug ON workshops USING btree (slug);
+
+
+--
 -- Name: index_workshops_on_starts_on; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -2164,6 +2188,9 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20170728131301'),
 ('20170728131342'),
 ('20170728131403'),
-('20170729115044');
+('20170729115044'),
+('20170730062429'),
+('20170730063030'),
+('20170730063101');
 
 

@@ -1,7 +1,11 @@
 class Workshop < ApplicationRecord
+  extend FriendlyId
+
   belongs_to :certification
-  has_many :order_items
-  has_many :learners, through: :order_items
+  has_many :registrations
+  has_many :learners, through: :registrations
+
+  friendly_id :slug_candidates, use: :slugged
 
   validates :venue, :city, :country, :starts_on, :ends_on, :starts_at, :ends_at, :seats, :ticket_price, :seo_meta_keywords, :seo_meta_description, presence: true
 
@@ -13,7 +17,7 @@ class Workshop < ApplicationRecord
   }
 
   validates_date :starts_on, :on_or_after => lambda { Date.today + 45.days }
-  validates_date :ends_on, :is_at => lambda { :starts_on + 1.day }
+  validates_date :ends_on, :is_at => lambda { :ends_a_day_after_start }
 
   validates_time :starts_at, :on_or_after => '8:30am',
                                 :on_or_after_message => 'must be after opening time',
@@ -36,4 +40,15 @@ class Workshop < ApplicationRecord
   	less_than_or_equal_to: 40000.00
   }
 
+  private
+
+    def slug_candidates
+      [
+        [certification.name, :city, :starts_on]
+      ]
+    end
+
+    def ends_a_day_after_start
+      starts_on.next_day(1)
+    end
 end

@@ -20,4 +20,9 @@ RSpec.describe Workshop, type: :model do
   	expect(workshop).to_not be_valid
   end
 
+  it "uses certification name as part of slug" do
+    workshop = FactoryGirl.create(:workshop)
+    expected_slug = workshop.certification.name.gsub(" ","-").downcase << "-" << workshop.city.downcase.gsub(" ","-") << "-" << workshop.starts_on.to_s
+    expect(workshop.slug).to eql(expected_slug)
+  end
 end

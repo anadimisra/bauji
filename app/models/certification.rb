@@ -1,7 +1,9 @@
 class Certification < ApplicationRecord
-	#extend FriendlyId
+	extend FriendlyId
 
 	has_many :workshops, validate: false
+
+	friendly_id :name, use: :slugged
 
 	validates :name, presence: true, length: {
 		minimum: 10,
@@ -12,5 +14,4 @@ class Certification < ApplicationRecord
 
 	validates :description, :terms, :seo_meta_keywords, :seo_meta_description, presence: true
 
-	#friendly_id :name, use: :slugged
 end
