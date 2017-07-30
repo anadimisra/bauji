@@ -37,7 +37,7 @@ RSpec.describe OffersController, type: :controller do
   }
 
   let(:valid_end_date){
-    Date.today + 20.days
+    Date.today.next_day(20)
   }
 
   # This should return the minimal set of values that should be in the session
@@ -101,33 +101,29 @@ RSpec.describe OffersController, type: :controller do
   describe "PUT #update" do
     context "with valid params" do
       let(:new_attributes) {
-        FactoryGirl.build(:offer, available_to: valid_end_date).serializable_hash
+        
+        offer = FactoryGirl.build(:offer, available_to: valid_end_date).serializable_hash
       }
 
       it "updates the requested offer" do
-        if !Offer.exists? valid_attributes
-          offer = Offer.create! valid_attributes
-        end
-        put :update, params: {id: offer.to_param, offer: new_attributes}, session: valid_session
+        offer = Offer.find_or_create_by valid_attributes
+        put :update, params: { id: offer.to_param, offer: new_attributes }, session: valid_session
         offer.reload
         expect(offer.available_to).to eq valid_end_date
       end
 
       it "redirects to the offer" do
-        if !Offer.exists? valid_attributes
-          offer = Offer.create! valid_attributes
-        end
-        put :update, params: {id: offer.to_param, offer: new_attributes}, session: valid_session
+        offer = Offer.find_or_create_by valid_attributes
+        put :update, params: { id: offer.to_param, offer: new_attributes }, session: valid_session
         expect(response).to redirect_to(offer)
       end
     end
 
     context "with invalid params" do
       it "returns a success response (i.e. to display the 'edit' template)" do
-        if !Offer.exists? valid_attributes
-          offer = Offer.create! valid_attributes
-        end
-        put :update, params: {id: offer.to_param, offer: invalid_attributes}, session: valid_session
+        
+        offer = Offer.find_or_create_by valid_attributes
+        put :update, params: { id: offer.to_param, offer: invalid_attributes }, session: valid_session
         expect(response).to be_success
       end
     end
