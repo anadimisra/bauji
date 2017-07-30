@@ -20,7 +20,7 @@ class OrdersController < ApplicationController
     respond_to do |format|
       if @order.save
         format.html { head :created, content_type: "text/html" }
-        format.json { head :created }
+        format.json { head :created, location: @order }
       else
         format.html { head :bad_request, content_type: "text/html" }
         format.json { head :bad_request }
@@ -34,7 +34,7 @@ class OrdersController < ApplicationController
     respond_to do |format|
       if @order.update(order_params)
         format.html { redirect_to @order, notice: 'Learner was successfully updated.' }
-        format.json { render :show, status: :ok, location: @order }
+        format.json { head :ok, location: @order }
       else
         format.html { render :edit }
         format.json { render json: @order.errors, status: :unprocessable_entity }
@@ -54,7 +54,7 @@ class OrdersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def order_params
-      params.require(:order).permit(:order_id, :gateway_transaction_id, :order_value, :transaction_status, :payment_gateway, :offer_id)
+      params.require(:order).permit(:order_id, :gateway_transaction_id, :order_value, :transaction_status, :payment_gateway, :offer_id, regisrations: [])
     end  
 
 end

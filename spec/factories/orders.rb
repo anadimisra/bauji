@@ -8,8 +8,8 @@ FactoryGirl.define do
     transaction_status "init"
     payment_gateway "ccavenue"
     factory :order_with_registrations do
-    	after(:build) do |registration|
-    		create_list(:registration, 1, order: order)
+    	after(:create) do |order|
+    		order.registrations << FactoryGirl.build(:registration)
     	end
     end  
   end

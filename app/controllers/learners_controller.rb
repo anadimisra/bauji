@@ -20,7 +20,7 @@ class LearnersController < ApplicationController
     respond_to do |format|
       if @learner.save
         format.html { head :created, content_type: "text/html" }
-        format.json { head :created }
+        format.json { head :created, location: @order }
       else
         format.html { head :bad_request, content_type: "text/html" }
         format.json { head :bad_request }
@@ -34,7 +34,7 @@ class LearnersController < ApplicationController
     respond_to do |format|
       if @learner.update(learner_params)
         format.html { redirect_to @learner, notice: 'Learner was successfully updated.' }
-        format.json { render :show, status: :ok, location: @learner }
+        format.json { head :ok, location: @learner }
       else
         format.html { render :edit }
         format.json { render json: @learner.errors, status: :unprocessable_entity }

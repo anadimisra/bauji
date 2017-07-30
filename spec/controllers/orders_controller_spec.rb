@@ -53,14 +53,14 @@ RSpec.describe OrdersController, type: :controller do
   describe "PUT #update" do
     context "with valid params" do
       let(:new_attributes) {
-        FactoryGirl.build(:order, order_value: 80000.00).serializable_hash
+        FactoryGirl.build(:order, transaction_status: "success").serializable_hash
       }
 
       it "updates the requested order" do
         order = Order.create! valid_attributes
         put :update, params: {id: order.to_param, order: new_attributes}, session: valid_session
         order.reload
-        expect(order.order_value).to eql 80000.0
+        expect(order.transaction_status).to eql "success"
       end
 
       it "redirects to the order" do
