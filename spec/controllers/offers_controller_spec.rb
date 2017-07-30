@@ -100,30 +100,27 @@ RSpec.describe OffersController, type: :controller do
 
   describe "PUT #update" do
     context "with valid params" do
-      let(:new_attributes) {
-        
-        offer = FactoryGirl.build(:offer, available_to: valid_end_date).serializable_hash
-      }
-
       it "updates the requested offer" do
-        offer = Offer.find_or_create_by valid_attributes
-        put :update, params: { id: offer.to_param, offer: new_attributes }, session: valid_session
+        offer = Offer.create! valid_attributes
+        offer.available_to = valid_end_date
+        put :update, params: { id: offer.to_param, offer: offer.serializable_hash }, session: valid_session
         offer.reload
         expect(offer.available_to).to eq valid_end_date
       end
 
       it "redirects to the offer" do
-        offer = Offer.find_or_create_by valid_attributes
-        put :update, params: { id: offer.to_param, offer: new_attributes }, session: valid_session
+        offer = Offer.create! valid_attributes
+        offer.available_to = valid_end_date
+        put :update, params: { id: offer.to_param, offer: offer.serializable_hash }, session: valid_session
         expect(response).to redirect_to(offer)
       end
     end
 
     context "with invalid params" do
       it "returns a success response (i.e. to display the 'edit' template)" do
-        
-        offer = Offer.find_or_create_by valid_attributes
-        put :update, params: { id: offer.to_param, offer: invalid_attributes }, session: valid_session
+        offer = Offer.create! valid_attributes
+        offer.available_to = nil
+        put :update, params: { id: offer.to_param, offer: offer.serializable_hash }, session: valid_session
         expect(response).to be_success
       end
     end
