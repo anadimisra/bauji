@@ -14,4 +14,15 @@ class Certification < ApplicationRecord
 
 	validates :description, :terms, :seo_meta_keywords, :seo_meta_description, presence: true
 
+	before_update :do_not_allow_name_to_be_updated
+
+	private
+
+		def do_not_allow_name_to_be_updated
+			if self.name_changed?
+				errors.add(:name, "Can't be changed once set")
+				return false
+			end
+		end
+
 end
