@@ -63,7 +63,7 @@ class JobPostsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_job_post
-      @job_post = JobPost.find(params[:id])
+      @job_post = JobPost.friendly.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

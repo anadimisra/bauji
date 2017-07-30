@@ -33,7 +33,7 @@ RSpec.describe CertificationsController, type: :controller do
   }
 
   let(:invalid_attributes) {
-    FactoryGirl.build(:invalid_certification).serializable_hash
+    FactoryGirl.build(:certification, name: "foo").serializable_hash
   }
 
   # This should return the minimal set of values that should be in the session
@@ -97,14 +97,15 @@ RSpec.describe CertificationsController, type: :controller do
   describe "PUT #update" do
     context "with valid params" do
       let(:new_attributes) {
-        FactoryGirl.build(:new_valid_certification).serializable_hash
+        FactoryGirl.build(:certification, name: "DevOps Leader").serializable_hash
       }
 
       it "updates the requested certification" do
         certification = Certification.create! valid_attributes
         put :update, params: {id: certification.to_param, certification: new_attributes}, session: valid_session
         certification.reload
-        expect(certification.terms).to eql(FactoryGirl.build(:new_valid_certification).terms)
+        expect(certification.name).to eql("DevOps Leader")
+        #expect(certification.slug).to eql("devops-leader")
       end
 
       it "redirects to the certification" do
