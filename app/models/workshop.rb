@@ -16,8 +16,9 @@ class Workshop < ApplicationRecord
   	too_short: "Should not be less that %{count} characters"
   }
 
-  validates_date :starts_on, :on_or_after => lambda { Date.today + 45.days }
-  validates_date :ends_on, :is_at => lambda { :ends_a_day_after_start }
+  validates_date :starts_on, :on_or_after => :starts_atleast_45_days_from_now,
+                              :on_or_after_message => "We need atleast 45 days of Maketing for a workshop, choose date accrodingly"
+  validates_date :ends_on, :is_at => :ends_a_day_after_start
 
   validates_time :starts_at, :on_or_after => '8:30am',
                                 :on_or_after_message => 'must be after opening time',
@@ -46,6 +47,10 @@ class Workshop < ApplicationRecord
       [
         [certification.name, :city, :starts_on]
       ]
+    end
+
+    def starts_atleast_45_days_from_now
+      Date.today.next_day(45)
     end
 
     def ends_a_day_after_start
