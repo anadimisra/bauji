@@ -2,8 +2,8 @@ require "ffaker"
 
 FactoryGirl.define do
   factory :workshop do
-    venue FFaker::Venue.name
-    city FFaker::Address.city
+    venue "Hilton"
+    city "Bangalore"
     country "India"
     venue_map_link nil
     description "MyText"
