@@ -94,7 +94,7 @@ gem 'figaro', '~> 1.1.1'
 # Validate date range for certifications
 gem 'validates_timeliness', '~> 4.0.2'
 
-# Nothing ever dies!! do not allow deletion of records
+# Nothing ever dies!! Do not allow deletion of records
 gem 'paranoia', '~> 2.3.1' 
 
 #better display date ranges 
@@ -108,6 +108,12 @@ gem 'money', '~> 6.9'
 
 # Backup Database
 # gem 'backup', '~> 4.4'
+
+source 'https://rails-assets.org' do
+  gem 'rails-assets-bootstrap-social', '~> 5.1.1'
+  gem 'rails-assets-bootstrap-sweetalert', '~> 1.0.1'
+  gem 'rails-assets-lodash', '~> 4.17.4'
+end
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
@@ -134,6 +140,7 @@ group :development, :test do
   # Fixtures are messy!
   gem 'factory_girl_rails', '~> 4.8'
   gem 'ffaker', '~> 2.6'
+  gem 'json-schema', '~> 2.8'
 end
 
 group :development do

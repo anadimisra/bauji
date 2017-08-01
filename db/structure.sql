@@ -112,7 +112,8 @@ CREATE TABLE certifications (
     seo_meta_keywords character varying[] NOT NULL,
     seo_meta_description character varying NOT NULL,
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    updated_at timestamp without time zone NOT NULL,
+    slug character varying
 );
 
 
@@ -248,7 +249,8 @@ CREATE TABLE job_posts (
     seo_meta_keywords character varying[] NOT NULL,
     seo_meta_description character varying(150) NOT NULL,
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    updated_at timestamp without time zone NOT NULL,
+    slug character varying
 );
 
 
@@ -477,7 +479,9 @@ CREATE TABLE users (
     unlock_token character varying,
     locked_at timestamp without time zone,
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    updated_at timestamp without time zone NOT NULL,
+    provider character varying,
+    uid character varying
 );
 
 
@@ -531,7 +535,8 @@ CREATE TABLE workshops (
     seo_meta_description character varying NOT NULL,
     certification_id bigint,
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    updated_at timestamp without time zone NOT NULL,
+    slug character varying
 );
 
 
@@ -943,11 +948,14 @@ CREATE TABLE users (
     confirmation_token character varying,
     confirmed_at timestamp without time zone,
     confirmation_sent_at timestamp without time zone,
+    unconfirmed_email character varying,
     failed_attempts integer DEFAULT 0 NOT NULL,
     unlock_token character varying,
     locked_at timestamp without time zone,
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    updated_at timestamp without time zone NOT NULL,
+    provider character varying,
+    uid character varying
 );
 
 
@@ -1435,6 +1443,13 @@ CREATE UNIQUE INDEX index_certifications_on_name ON certifications USING btree (
 
 
 --
+-- Name: index_certifications_on_slug; Type: INDEX; Schema: bauji_dev; Owner: -
+--
+
+CREATE UNIQUE INDEX index_certifications_on_slug ON certifications USING btree (slug);
+
+
+--
 -- Name: index_coupons_on_voucher_code; Type: INDEX; Schema: bauji_dev; Owner: -
 --
 
@@ -1502,6 +1517,13 @@ CREATE INDEX index_job_posts_on_location ON job_posts USING btree (location);
 --
 
 CREATE UNIQUE INDEX index_job_posts_on_name ON job_posts USING btree (name);
+
+
+--
+-- Name: index_job_posts_on_slug; Type: INDEX; Schema: bauji_dev; Owner: -
+--
+
+CREATE UNIQUE INDEX index_job_posts_on_slug ON job_posts USING btree (slug);
 
 
 --
@@ -1712,6 +1734,13 @@ CREATE INDEX index_workshops_on_country ON workshops USING btree (country);
 --
 
 CREATE INDEX index_workshops_on_ends_on ON workshops USING btree (ends_on);
+
+
+--
+-- Name: index_workshops_on_slug; Type: INDEX; Schema: bauji_dev; Owner: -
+--
+
+CREATE UNIQUE INDEX index_workshops_on_slug ON workshops USING btree (slug);
 
 
 --
@@ -2191,6 +2220,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20170729115044'),
 ('20170730062429'),
 ('20170730063030'),
-('20170730063101');
+('20170730063101'),
+('20170731111327');
 
 

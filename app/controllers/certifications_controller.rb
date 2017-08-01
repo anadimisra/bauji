@@ -1,4 +1,5 @@
 class CertificationsController < ApplicationController
+  skip_before_action :authenticate_user!, if: :skip_user_authentication
   before_action :set_certification, only: [:show, :edit, :update, :destroy]
 
   # GET /certifications
@@ -61,6 +62,11 @@ class CertificationsController < ApplicationController
     end
   end
 
+  protected
+    def skip_user_authentication
+        request.format.json? && (action_name.eql?('show') || (action_name.eql?('index'))) 
+    end    
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_certification
@@ -70,5 +76,5 @@ class CertificationsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def certification_params
       params.require(:certification).permit(:name, :description, :terms, :seo_meta_description, seo_meta_keywords: [])
-    end
+    end 
 end

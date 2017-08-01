@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-
+  devise_for :users, :controllers => { :omniauth_callbacks => "callbacks" }
   # Orders
   get 'orders', to: "orders#index", as: "orders"
   post 'orders', to: "orders#create"
@@ -22,8 +22,7 @@ Rails.application.routes.draw do
   resources :certifications
   resources :workshops
   resources :job_posts
-  #devise_for :users
+
 	root :to => 'certifications#index'  
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   
 end
