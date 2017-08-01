@@ -24,7 +24,10 @@ require 'rails_helper'
 # `rails-controller-testing` gem.
 
 RSpec.describe CouponsController, type: :controller do
-
+ 
+  # Login before all actions 
+  login_user
+  
   # This should return the minimal set of attributes required to create a valid
   # Coupon. As you add validations to Coupon, be sure to
   # adjust the attributes here as well.
@@ -36,15 +39,10 @@ RSpec.describe CouponsController, type: :controller do
     FactoryGirl.build(:coupon, voucher_code: "FOO").serializable_hash
   }
 
-  # This should return the minimal set of values that should be in the session
-  # in order to pass any filters (e.g. authentication) defined in
-  # CouponsController. Be sure to keep this updated too.
-  let(:valid_session) { {} }
-
   describe "GET #index" do
     it "returns a success response" do
       coupon = Coupon.create! valid_attributes
-      get :index, params: {}, session: valid_session
+      get :index, params: {}
       expect(response).to be_success
     end
   end
@@ -52,14 +50,14 @@ RSpec.describe CouponsController, type: :controller do
   describe "GET #show" do
     it "returns a success response" do
       coupon = Coupon.create! valid_attributes
-      get :show, params: {id: coupon.to_param}, session: valid_session
+      get :show, params: {id: coupon.to_param}
       expect(response).to be_success
     end
   end
 
   describe "GET #new" do
     it "returns a success response" do
-      get :new, params: {}, session: valid_session
+      get :new, params: {}
       expect(response).to be_success
     end
   end
@@ -67,7 +65,7 @@ RSpec.describe CouponsController, type: :controller do
   describe "GET #edit" do
     it "returns a success response" do
       coupon = Coupon.create! valid_attributes
-      get :edit, params: {id: coupon.to_param}, session: valid_session
+      get :edit, params: {id: coupon.to_param}
       expect(response).to be_success
     end
   end
@@ -76,19 +74,19 @@ RSpec.describe CouponsController, type: :controller do
     context "with valid params" do
       it "creates a new Coupon" do
         expect {
-          post :create, params: {coupon: valid_attributes}, session: valid_session
+          post :create, params: {coupon: valid_attributes}
         }.to change(Coupon, :count).by(1)
       end
 
       it "redirects to the created coupon" do
-        post :create, params: {coupon: valid_attributes}, session: valid_session
+        post :create, params: {coupon: valid_attributes}
         expect(response).to redirect_to(Coupon.last)
       end
     end
 
     context "with invalid params" do
       it "returns a success response (i.e. to display the 'new' template)" do
-        post :create, params: {coupon: invalid_attributes}, session: valid_session
+        post :create, params: {coupon: invalid_attributes}
         expect(response).to be_success
       end
     end
@@ -102,14 +100,14 @@ RSpec.describe CouponsController, type: :controller do
 
       it "updates the requested coupon" do
         coupon = Coupon.create! valid_attributes
-        put :update, params: {id: coupon.to_param, coupon: new_attributes}, session: valid_session
+        put :update, params: {id: coupon.to_param, coupon: new_attributes}
         coupon.reload
         expect(coupon.voucher_code).to eql("OTHERVAL")
       end
 
       it "redirects to the coupon" do
         coupon = Coupon.create! valid_attributes
-        put :update, params: {id: coupon.to_param, coupon: valid_attributes}, session: valid_session
+        put :update, params: {id: coupon.to_param, coupon: valid_attributes}
         expect(response).to redirect_to(coupon)
       end
     end
@@ -117,7 +115,7 @@ RSpec.describe CouponsController, type: :controller do
     context "with invalid params" do
       it "returns a success response (i.e. to display the 'edit' template)" do
         coupon = Coupon.create! valid_attributes
-        put :update, params: {id: coupon.to_param, coupon: invalid_attributes}, session: valid_session
+        put :update, params: {id: coupon.to_param, coupon: invalid_attributes}
         expect(response).to be_success
       end
     end
@@ -127,13 +125,13 @@ RSpec.describe CouponsController, type: :controller do
     it "destroys the requested coupon" do
       coupon = Coupon.create! valid_attributes
       expect {
-        delete :destroy, params: {id: coupon.to_param}, session: valid_session
+        delete :destroy, params: {id: coupon.to_param}
       }.to change(Coupon, :count).by(-1)
     end
 
     it "redirects to the coupons list" do
       coupon = Coupon.create! valid_attributes
-      delete :destroy, params: {id: coupon.to_param}, session: valid_session
+      delete :destroy, params: {id: coupon.to_param}
       expect(response).to redirect_to(coupons_url)
     end
   end

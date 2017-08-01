@@ -25,6 +25,9 @@ require 'rails_helper'
 
 RSpec.describe WorkshopsController, type: :controller do
 
+  # Login before all actions 
+  login_user
+
   # This should return the minimal set of attributes required to create a valid
   # Workshop. As you add validations to Workshop, be sure to
   # adjust the attributes here as well.
@@ -36,15 +39,10 @@ RSpec.describe WorkshopsController, type: :controller do
     FactoryGirl.build(:workshop, city: nil).serializable_hash
   }
 
-  # This should return the minimal set of values that should be in the session
-  # in order to pass any filters (e.g. authentication) defined in
-  # WorkshopsController. Be sure to keep this updated too.
-  let(:valid_session) { {} }
-
   describe "GET #index" do
     it "returns a success response" do
       workshop = Workshop.create! valid_attributes
-      get :index, params: {}, session: valid_session
+      get :index, params: {}
       expect(response).to be_success
     end
   end
@@ -52,14 +50,14 @@ RSpec.describe WorkshopsController, type: :controller do
   describe "GET #show" do
     it "returns a success response" do
       workshop = Workshop.create! valid_attributes
-      get :show, params: {id: workshop.to_param}, session: valid_session
+      get :show, params: {id: workshop.to_param}
       expect(response).to be_success
     end
   end
 
   describe "GET #new" do
     it "returns a success response" do
-      get :new, params: {}, session: valid_session
+      get :new, params: {}
       expect(response).to be_success
     end
   end
@@ -67,7 +65,7 @@ RSpec.describe WorkshopsController, type: :controller do
   describe "GET #edit" do
     it "returns a success response" do
       workshop = Workshop.create! valid_attributes
-      get :edit, params: {id: workshop.to_param}, session: valid_session
+      get :edit, params: {id: workshop.to_param}
       expect(response).to be_success
     end
   end
@@ -76,19 +74,19 @@ RSpec.describe WorkshopsController, type: :controller do
     context "with valid params" do
       it "creates a new Workshop" do
         expect {
-          post :create, params: {workshop: valid_attributes}, session: valid_session
+          post :create, params: {workshop: valid_attributes}
         }.to change(Workshop, :count).by(1)
       end
 
       it "redirects to the created workshop" do
-        post :create, params: {workshop: valid_attributes}, session: valid_session
+        post :create, params: {workshop: valid_attributes}
         expect(response).to redirect_to(Workshop.last)
       end
     end
 
     context "with invalid params" do
       it "returns a success response (i.e. to display the 'new' template)" do
-        post :create, params: {workshop: invalid_attributes}, session: valid_session
+        post :create, params: {workshop: invalid_attributes}
         expect(response).to be_success
       end
     end
@@ -99,7 +97,7 @@ RSpec.describe WorkshopsController, type: :controller do
       it "updates the requested workshop" do
         workshop = Workshop.create! valid_attributes
         workshop.city = "Bombay"
-        put :update, params: {id: workshop.to_param, workshop: workshop.serializable_hash}, session: valid_session
+        put :update, params: {id: workshop.to_param, workshop: workshop.serializable_hash}
         workshop.reload
         expect(workshop.city).to eql "Bombay"
       end
@@ -107,7 +105,7 @@ RSpec.describe WorkshopsController, type: :controller do
       it "redirects to the workshop" do
         workshop = Workshop.create! valid_attributes
         workshop.city = "Bombay"
-        put :update, params: {id: workshop.to_param, workshop: workshop.serializable_hash}, session: valid_session
+        put :update, params: {id: workshop.to_param, workshop: workshop.serializable_hash}
         expect(response).to redirect_to(workshop)
       end
     end
@@ -116,7 +114,7 @@ RSpec.describe WorkshopsController, type: :controller do
       it "returns a success response (i.e. to display the 'edit' template)" do
         workshop = Workshop.create! valid_attributes
         workshop.city = nil
-        put :update, params: {id: workshop.to_param, workshop: workshop.serializable_hash}, session: valid_session
+        put :update, params: {id: workshop.to_param, workshop: workshop.serializable_hash}
         expect(response).to be_success
       end
     end
@@ -126,13 +124,13 @@ RSpec.describe WorkshopsController, type: :controller do
     it "destroys the requested workshop" do
       workshop = Workshop.create! valid_attributes
       expect {
-        delete :destroy, params: {id: workshop.to_param}, session: valid_session
+        delete :destroy, params: {id: workshop.to_param}
       }.to change(Workshop, :count).by(-1)
     end
 
     it "redirects to the workshops list" do
       workshop = Workshop.create! valid_attributes
-      delete :destroy, params: {id: workshop.to_param}, session: valid_session
+      delete :destroy, params: {id: workshop.to_param}
       expect(response).to redirect_to(workshops_url)
     end
   end

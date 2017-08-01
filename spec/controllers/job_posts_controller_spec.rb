@@ -25,6 +25,9 @@ require 'rails_helper'
 
 RSpec.describe JobPostsController, type: :controller do
 
+  # Login before all actions 
+  login_user
+
   # This should return the minimal set of attributes required to create a valid
   # JobPost. As you add validations to JobPost, be sure to
   # adjust the attributes here as well.
@@ -45,7 +48,7 @@ RSpec.describe JobPostsController, type: :controller do
   describe "GET #index" do
     it "returns a success response" do
       job_post = JobPost.create! valid_attributes
-      get :index, params: {}, session: valid_session
+      get :index, params: {}
       expect(response).to be_success
     end
   end
@@ -53,7 +56,7 @@ RSpec.describe JobPostsController, type: :controller do
   describe "GET #show" do
     it "returns a success response" do
       job_post = JobPost.create! valid_attributes
-      get :show, params: {id: job_post.to_param}, session: valid_session
+      get :show, params: {id: job_post.to_param}
       expect(response).to be_success
     end
   end
@@ -68,7 +71,7 @@ RSpec.describe JobPostsController, type: :controller do
   describe "GET #edit" do
     it "returns a success response" do
       job_post = JobPost.create! valid_attributes
-      get :edit, params: {id: job_post.to_param}, session: valid_session
+      get :edit, params: {id: job_post.to_param}
       expect(response).to be_success
     end
   end
@@ -77,19 +80,19 @@ RSpec.describe JobPostsController, type: :controller do
     context "with valid params" do
       it "creates a new JobPost" do   
         expect {
-          post :create, params: {job_post: valid_attributes}, session: valid_session
+          post :create, params: {job_post: valid_attributes}
         }.to change(JobPost, :count).by(1)
       end
 
       it "redirects to the created job_post" do    
-        post :create, params: {job_post: valid_attributes}, session: valid_session
+        post :create, params: {job_post: valid_attributes}
         expect(response).to redirect_to(JobPost.last)
       end
     end
 
     context "with invalid params" do
       it "returns a success response (i.e. to display the 'new' template)" do
-        post :create, params: {job_post: invalid_attributes}, session: valid_session
+        post :create, params: {job_post: invalid_attributes}
         expect(response).to be_success
       end
     end
@@ -104,14 +107,14 @@ RSpec.describe JobPostsController, type: :controller do
 
       it "updates the requested job_post" do      
         job_post = JobPost.create! valid_attributes
-        put :update, params: {id: job_post.to_param, job_post: new_attributes}, session: valid_session
+        put :update, params: {id: job_post.to_param, job_post: new_attributes}
         job_post.reload
         expect(job_post.location).to eql("Pune")
       end
 
       it "redirects to the job_post" do      
         job_post = JobPost.create! valid_attributes
-        put :update, params: {id: job_post.to_param, job_post: valid_attributes}, session: valid_session
+        put :update, params: {id: job_post.to_param, job_post: valid_attributes}
         expect(response).to redirect_to(job_post)
       end
     end
@@ -119,7 +122,7 @@ RSpec.describe JobPostsController, type: :controller do
     context "with invalid params" do
       it "returns a success response (i.e. to display the 'edit' template)" do      
         job_post = JobPost.create! valid_attributes
-        put :update, params: {id: job_post.to_param, job_post: invalid_attributes}, session: valid_session
+        put :update, params: {id: job_post.to_param, job_post: invalid_attributes}
         expect(response).to be_success
       end
     end
@@ -129,13 +132,13 @@ RSpec.describe JobPostsController, type: :controller do
     it "destroys the requested job_post" do
       job_post = JobPost.create! valid_attributes
       expect {
-        delete :destroy, params: {id: job_post.to_param}, session: valid_session
+        delete :destroy, params: {id: job_post.to_param}
       }.to change(JobPost, :count).by(-1)
     end
 
     it "redirects to the job_posts list" do
       job_post = JobPost.create! valid_attributes
-      delete :destroy, params: {id: job_post.to_param}, session: valid_session
+      delete :destroy, params: {id: job_post.to_param}
       expect(response).to redirect_to(job_posts_url)
     end
   end

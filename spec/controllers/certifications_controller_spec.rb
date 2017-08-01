@@ -25,6 +25,9 @@ require 'rails_helper'
 
 RSpec.describe CertificationsController, type: :controller do
 
+  # Login before all actions 
+  login_user
+
   # This should return the minimal set of attributes required to create a valid
   # Certification. As you add validations to Certification, be sure to
   # adjust the attributes here as well.
@@ -36,15 +39,10 @@ RSpec.describe CertificationsController, type: :controller do
     FactoryGirl.build(:certification, name: "foo").serializable_hash
   }
 
-  # This should return the minimal set of values that should be in the session
-  # in order to pass any filters (e.g. authentication) defined in
-  # CertificationsController. Be sure to keep this updated too.
-  let(:valid_session) { {} }
-
   describe "GET #index" do
     it "returns a success response" do
       certification = Certification.create! valid_attributes
-      get :index, params: {}, session: valid_session
+      get :index, params: {}
       expect(response).to be_success
     end
   end
@@ -52,14 +50,14 @@ RSpec.describe CertificationsController, type: :controller do
   describe "GET #show" do
     it "returns a success response" do
       certification = Certification.create! valid_attributes
-      get :show, params: {id: certification.to_param}, session: valid_session
+      get :show, params: {id: certification.to_param}
       expect(response).to be_success
     end
   end
 
   describe "GET #new" do
     it "returns a success response" do
-      get :new, params: {}, session: valid_session
+      get :new, params: {}
       expect(response).to be_success
     end
   end
@@ -67,7 +65,7 @@ RSpec.describe CertificationsController, type: :controller do
   describe "GET #edit" do
     it "returns a success response" do
       certification = Certification.create! valid_attributes
-      get :edit, params: {id: certification.to_param}, session: valid_session
+      get :edit, params: {id: certification.to_param}
       expect(response).to be_success
     end
   end
@@ -76,19 +74,19 @@ RSpec.describe CertificationsController, type: :controller do
     context "with valid params" do
       it "creates a new Certification" do
         expect {
-          post :create, params: {certification: valid_attributes}, session: valid_session
+          post :create, params: {certification: valid_attributes}
         }.to change(Certification, :count).by(1)
       end
 
       it "redirects to the created certification" do
-        post :create, params: {certification: valid_attributes}, session: valid_session
+        post :create, params: {certification: valid_attributes}
         expect(response).to redirect_to(Certification.last)
       end
     end
 
     context "with invalid params" do
       it "returns a success response (i.e. to display the 'new' template)" do
-        post :create, params: {certification: invalid_attributes}, session: valid_session
+        post :create, params: {certification: invalid_attributes}
         expect(response).to be_success
       end
     end
@@ -97,28 +95,27 @@ RSpec.describe CertificationsController, type: :controller do
   describe "PUT #update" do
     context "with valid params" do
       let(:new_attributes) {
-        FactoryGirl.build(:certification, name: "DevOps Leader").serializable_hash
+        FactoryGirl.build(:certification, terms: "here are the new terms").serializable_hash
       }
 
       it "updates the requested certification" do
         certification = Certification.create! valid_attributes
-        put :update, params: {id: certification.to_param, certification: new_attributes}, session: valid_session
+        put :update, params: {id: certification.to_param, certification: new_attributes}
         certification.reload
-        expect(certification.name).to eql("DevOps Leader")
-        #expect(certification.slug).to eql("devops-leader")
+        expect(certification.terms).to eql("here are the new terms")
       end
 
       it "redirects to the certification" do
         certification = Certification.create! valid_attributes
-        put :update, params: {id: certification.to_param, certification: valid_attributes}, session: valid_session
+        put :update, params: {id: certification.to_param, certification: valid_attributes}
         expect(response).to redirect_to(certification)
       end
     end
 
     context "with invalid params" do
-      it "returns a success response (i.e. to display the 'edit' template)" do
+      it "does not allow updating name (i.e. to display the 'edit' template)" do
         certification = Certification.create! valid_attributes
-        put :update, params: {id: certification.to_param, certification: invalid_attributes}, session: valid_session
+        put :update, params: {id: certification.to_param, certification: invalid_attributes}
         expect(response).to be_success
       end
     end
@@ -128,13 +125,13 @@ RSpec.describe CertificationsController, type: :controller do
     it "destroys the requested certification" do
       certification = Certification.create! valid_attributes
       expect {
-        delete :destroy, params: {id: certification.to_param}, session: valid_session
+        delete :destroy, params: {id: certification.to_param}
       }.to change(Certification, :count).by(-1)
     end
 
     it "redirects to the certifications list" do
       certification = Certification.create! valid_attributes
-      delete :destroy, params: {id: certification.to_param}, session: valid_session
+      delete :destroy, params: {id: certification.to_param}
       expect(response).to redirect_to(certifications_url)
     end
   end
