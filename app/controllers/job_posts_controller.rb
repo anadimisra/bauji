@@ -1,4 +1,4 @@
-class JobPostsController < ApplicationController
+class JobPostsController < PublicIndexesController
   before_action :set_job_post, only: [:show, :edit, :update, :destroy]
 
   # GET /job_posts
