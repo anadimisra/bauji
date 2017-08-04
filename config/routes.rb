@@ -16,6 +16,9 @@ Rails.application.routes.draw do
   put 'learners/:id', to: "learners#update"
   patch 'learners/:id', to: "learners#update"
 
+  # Expose vouchers as an endpoint from Offers Controller
+  get 'vouchers/:voucher_code', to: 'offers#get_by_voucher_code', as: 'vouchers'
+
   resources :offers
   resources :discounts
   resources :coupons

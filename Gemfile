@@ -141,6 +141,7 @@ group :development, :test do
   gem 'factory_girl_rails', '~> 4.8'
   gem 'ffaker', '~> 2.6'
   gem 'json-schema', '~> 2.8'
+  gem 'timecop', '~> 0.9.1'
 end
 
 group :development do

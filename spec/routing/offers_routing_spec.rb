@@ -35,5 +35,8 @@ RSpec.describe OffersController, type: :routing do
       expect(:delete => "/offers/1").to route_to("offers#destroy", :id => "1")
     end
 
+    it "routes /vouchers/EARLYBIRD to #get_by_voucher_code" do
+      expect(:get => "/vouchers/EARLYBIRD").to route_to("offers#get_by_voucher_code", :voucher_code => "EARLYBIRD")
+    end
   end
 end

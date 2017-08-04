@@ -1,6 +1,6 @@
 class OffersController < ApplicationController
   before_action :set_offer, only: [:show, :edit, :update, :destroy]
-
+  skip_before_action :authenticate_user!, if: :skip_user_authentication
   # GET /offers
   # GET /offers.json
   def index
@@ -61,6 +61,27 @@ class OffersController < ApplicationController
     end
   end
 
+  def get_by_voucher_code
+    coupon = Coupon.find_by voucher_code: params[:voucher_code]
+    available_discounts = []
+    Offer.where('coupon_id = :coupon_id AND available_limit > 0 AND :today BETWEEN available_from AND available_to', coupon_id: coupon[:id], today: Date.today).find_each do |offer|
+      available_discount = AvailableDiscount.new
+      available_discount.voucher_code = coupon[:voucher_code]
+      available_discount.discount = offer.discount[:discount_percentage]
+      available_discounts << available_discount
+    end
+    if available_discounts.size > 0
+      render json: available_discounts, status: :ok
+    else
+      head :not_found
+    end
+  end
+
+  protected
+    def skip_user_authentication
+        action_name.eql?('get_by_voucher_code')
+    end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_offer
@@ -69,6 +90,6 @@ class OffersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def offer_params
-      params.require(:offer).permit(:available_from, :available_to, :discount_id, :coupon_id)
+      params.require(:offer).permit(:available_from, :available_to, :available_limit, :discount_id, :coupon_id)
     end
 end

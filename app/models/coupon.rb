@@ -1,4 +1,6 @@
 class Coupon < ApplicationRecord
+	has_many :offers
+	has_many :discounts, through: :offers
 
 		validates :name, presence: true, length: {
 			minimum: 10,

@@ -795,7 +795,8 @@ CREATE TABLE offers (
     discount_id bigint,
     coupon_id bigint,
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    updated_at timestamp without time zone NOT NULL,
+    available_limit integer DEFAULT 5 NOT NULL
 );
 
 
@@ -1900,6 +1901,13 @@ CREATE INDEX index_offers_on_available_from ON offers USING btree (available_fro
 
 
 --
+-- Name: index_offers_on_available_limit; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_offers_on_available_limit ON offers USING btree (available_limit);
+
+
+--
 -- Name: index_offers_on_available_to; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -2221,6 +2229,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20170730062429'),
 ('20170730063030'),
 ('20170730063101'),
-('20170731111327');
+('20170731111327'),
+('20170803134908');
 
 

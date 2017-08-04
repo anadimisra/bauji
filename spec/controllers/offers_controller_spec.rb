@@ -108,7 +108,7 @@ RSpec.describe OffersController, type: :controller do
 
       it "redirects to the offer" do
         offer = Offer.create! valid_attributes
-        offer.available_to = valid_end_date
+        offer.available_limit -= 1
         put :update, params: { id: offer.to_param, offer: offer.serializable_hash }
         expect(response).to redirect_to(offer)
       end
