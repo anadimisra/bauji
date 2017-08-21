@@ -3,7 +3,7 @@
 This README would normally document whatever steps are necessary to get the
 application up and running.
 
-Things you may want to cover:
+## Things to Note:
 
 * Ruby version: ruby 2.3.1p112 (2016-04-26 revision 54768)
 
@@ -14,9 +14,7 @@ Things you may want to cover:
 
 * Configuration: refer `config/application.rb` & `config/environments/{development.rb, test.rb, production.rb}` for details
 	
-* Database creation
-  * Development Database: the configuration assumes the default system user created by postgres installtion for postgres database as the default user, lets call it user `tony`, from the psql prompt issue the following commands
-     *   `CREATE SCHEMA bauji_dev AUTHORIZATION tony;`
+* Database creation: refer Postgres documentation on how to create database, user and schema
   
 * Database initialization
   * If you haven't already, run the following command from the root directory of your git clone
@@ -40,3 +38,33 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
+
+### Local environment
+
+#### Configuration Setup
+
+Bauji uses figaro gem for environment configuration properties.
+
+create an application yaml file under config folder `config/application.yml`
+
+here's a sample file 
+
+```
+RAILS_MAX_THREADS: '5'
+
+DEFAULT_DATABASE_USER: 'anadi'
+
+MAILER_SENDER: 'devise@agilityroots.com'
+
+development:
+  SCHEMA_SEARCH_PATH: 'bauji_dev'
+  DATABASE_PASSWORD: 'bauji'
+  DATABASE_USERNAME: 'anadi'
+  SECRET_KEY_BASE: "zzzzzzzzzzzzzzzzzzz"
+  GOOGLE_CLIENT_ID: "666jjjj.apps.googleusercontent.com"
+  GOOGLE_CLIENT_SECRET: "aaaaaaaaaaaaa-bbbbbbbbb"
+
+
+```
+
+for more details visit Figaro documentation: https://github.com/laserlemon/figaro

@@ -83,6 +83,9 @@ gem 'wkhtmltopdf-binary', '~> 0.12.3.1'
 # audit log all actions
 gem 'paper_trail', '~> 7.0.3'
 
+# add open graph metadata to models
+gem 'acts_as_opengraph', '~> 0.0.5'
+
 group :production do
   gem 'resque-pool', '~> 0.6.0'
   gem 'god', '~> 0.13.7'
