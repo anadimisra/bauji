@@ -54,7 +54,7 @@ RAILS_MAX_THREADS: '5'
 
 DEFAULT_DATABASE_USER: 'anadi'
 
-MAILER_SENDER: 'devise@agilityroots.com'
+MAILER_SENDER: 'foo@bar.com'
 
 SCHEMA_SEARCH_PATH: 'bauji_dev'
 
