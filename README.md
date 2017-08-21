@@ -49,22 +49,24 @@ create an application yaml file under config folder `config/application.yml`
 
 here's a sample file 
 
-```
+```yaml
 RAILS_MAX_THREADS: '5'
 
 DEFAULT_DATABASE_USER: 'anadi'
 
 MAILER_SENDER: 'devise@agilityroots.com'
 
-development:
-  SCHEMA_SEARCH_PATH: 'bauji_dev'
-  DATABASE_PASSWORD: 'bauji'
-  DATABASE_USERNAME: 'anadi'
-  SECRET_KEY_BASE: "zzzzzzzzzzzzzzzzzzz"
-  GOOGLE_CLIENT_ID: "666jjjj.apps.googleusercontent.com"
-  GOOGLE_CLIENT_SECRET: "aaaaaaaaaaaaa-bbbbbbbbb"
+SCHEMA_SEARCH_PATH: 'bauji_dev'
 
+DATABASE_PASSWORD: 'bauji'
 
+DATABASE_USERNAME: 'anadi'
+
+SECRET_KEY_BASE: "zzzzzzzzzzzzzzzzzzz"
+
+GOOGLE_CLIENT_ID: "666jjjj.apps.googleusercontent.com"
+
+GOOGLE_CLIENT_SECRET: "aaaaaaaaaaaaa-bbbbbbbbb"
 ```
 
 for more details visit Figaro documentation: https://github.com/laserlemon/figaro

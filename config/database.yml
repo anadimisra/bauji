@@ -60,7 +60,6 @@ development:
 # Do not set this db to the same as development or production.
 test: &test
   <<: *default
-  schema_search_path: public
   database: bauji_test
   password: bauji
 
