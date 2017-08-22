@@ -5,13 +5,13 @@ RSpec.describe "Workshops", type: :request do
 
     it "lists all workshops without authentication" do
     	FactoryGirl.create(:workshop)
-      get "/workshops.json"
+      get "/workshops", as: :json
       expect(response).to be_success
     end
 
     it "lists a workshops without authentication" do
     	workshop = FactoryGirl.create(:workshop)
-  		get "/workshops/"<<workshop.id.to_s<<".json"
+  		get "/workshops/#{workshop.id.to_s}", as: :json
     	expect(response).to be_success
     	expect(json['venue']).to eql workshop.venue
     end

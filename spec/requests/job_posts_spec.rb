@@ -5,13 +5,13 @@ RSpec.describe "JobPosts", type: :request do
 
     it "lists all vacancies without authentication" do
     	FactoryGirl.create(:job_post)
-      get "/job_posts.json"
+      get "/job_posts", as: :json
       expect(response).to be_success
     end
 
-    it "lists a vacancies without authentication" do
+    it "lists a vacancy without authentication" do
     	job = FactoryGirl.create(:job_post)
-  		get "/job_posts/"<<job.id.to_s<<".json"
+  		get "/job_posts/#{job.id.to_s}", as: :json
     	expect(response).to be_success
     	expect(json['name']).to eql job.name
     end

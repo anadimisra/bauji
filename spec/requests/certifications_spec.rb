@@ -6,13 +6,13 @@ RSpec.describe "Certifications", type: :request do
 
     it "lists all certifications without authentication" do
     	FactoryGirl.create(:certification)
-      get "/certifications.json"
+      get "/certifications", as: :json
       expect(response).to be_success
     end
 
     it "lists a certification without authentication" do
     	cert = FactoryGirl.create(:certification)
-  		get "/certifications/"<<cert.id.to_s<<".json"
+  		get "/certifications/#{cert.id.to_s}", as: :json
     	expect(response).to be_success
     	expect(json['name']).to eql cert.name
     end
