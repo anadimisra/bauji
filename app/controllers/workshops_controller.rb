@@ -71,6 +71,6 @@ class WorkshopsController < PublicIndexesController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def workshop_params
-      params.require(:workshop).permit(:venue, :city, :country, :venue_map_link, :description, :starts_on, :ends_on, :starts_at, :ends_at, :seats, :ticket_price, :seo_meta_description, :certification_id, seo_meta_keywords: [])
+      params.require(:workshop).permit(:venue, :city, :country, :venue_map_link, :description, :starts_on, :ends_on, :starts_at, :ends_at, :seats, :ticket_price, :order_number, :exam_id, :certification_id, :seo_meta_description, seo_meta_keywords: [])
     end
 end

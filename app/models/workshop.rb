@@ -4,6 +4,7 @@ class Workshop < ApplicationRecord
   belongs_to :certification
   has_many :registrations
   has_many :learners, through: :registrations
+  has_many :workshop_offers
 
   friendly_id :slug_candidates, use: :slugged
 

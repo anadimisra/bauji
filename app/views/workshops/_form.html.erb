@@ -7,12 +7,14 @@
     <%= f.input :country %>
     <%= f.input :venue_map_link %>
     <%= f.input :description %>
-    <%= f.input :starts_on, as: :string, input_html: {type: :date} %>
-    <%= f.input :ends_on, as: :string, input_html: {type: :date} %>
+    <%= f.input :starts_on, as: :string, input_html: { type: :date } %>
+    <%= f.input :ends_on, as: :string, input_html: { type: :date } %>
     <%= f.input :starts_at %>
     <%= f.input :ends_at %>
     <%= f.input :seats %>
     <%= f.input :ticket_price %>
+    <%= f.input :order_number %>
+    <%= f.input :exam_id %>
     <%= f.input :seo_meta_keywords %> 
     <!--, multiple: true, as: :array, input_html: { class: 'string required form-control'} %> -->
     <%= f.input :seo_meta_description %>

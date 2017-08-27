@@ -12,6 +12,8 @@ class CreateWorkshops < ActiveRecord::Migration[5.1]
       t.time :ends_at, null: false
       t.integer :seats, null: false, default: 25
       t.decimal :ticket_price, null: false, precision: 9, scale: 2, default: 35000.00
+      t.string :order_number
+      t.string :exam_id
       t.string :seo_meta_keywords, array: true, null: false
       t.string :seo_meta_description, null: false
       t.belongs_to :certification, foreign_key: true
@@ -23,5 +25,7 @@ class CreateWorkshops < ActiveRecord::Migration[5.1]
     add_index :workshops, :starts_on
     add_index :workshops, :ends_on
     add_index :workshops, :ticket_price
+    add_index :workshops, :order_number
+    add_index :workshops, :exam_id
   end
 end
