@@ -2,13 +2,36 @@
 <html>
   <head>
     <title>Bauji</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <%= favicon_link_tag 'favicon.ico' %>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+    <%= stylesheet_link_tag    controller_name, media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <%= javascript_include_tag controller_name, 'data-turbolinks-track': 'reload' %>
     <%= csrf_meta_tags %>
-
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
-
   <body>
-    <%= yield %>
+    <div class="page-container">
+      <div class="left-content">
+        <div class="mother-grid-inner">
+          <div class="header-main fixed">
+            <%= render "partials/header" %>
+          </div>
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+              <%= link_to "Home", root_path %>
+              <i class="fa fa-angle-right"></i>
+            </li>
+          </ol>
+          <main role="main">
+            <%= yield %>
+          </main>
+        </div>
+      </div>
+      <div class="sidebar-menu">
+        <%= render "partials/sidebar" %>
+      </div>
+      <div class="clearfix"></div>
+    </div>
   </body>
 </html>

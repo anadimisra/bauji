@@ -116,6 +116,11 @@ source 'https://rails-assets.org' do
   gem 'rails-assets-bootstrap-social', '~> 5.1.1'
   gem 'rails-assets-bootstrap-sweetalert', '~> 1.0.1'
   gem 'rails-assets-lodash', '~> 4.17.4'
+  gem 'rails-assets-wow', '~> 1.1.2'
+  gem 'rails-assets-flot', '~> 0.8.3'
+  gem 'rails-assets-swipebox', '~> 1.4.4'
+  gem 'rails-assets-moment', '~> 2.18.1'
+  gem 'rails-assets-underscore', '~> 1.8.3'
 end
 
 # Use Capistrano for deployment

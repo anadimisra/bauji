@@ -291,9 +291,15 @@ GEM
       rails-assets-bootstrap (~> 3)
       rails-assets-font-awesome (~> 4.7)
     rails-assets-bootstrap-sweetalert (1.0.1)
+    rails-assets-flot (0.8.3)
+      rails-assets-jquery (>= 1.2.6)
     rails-assets-font-awesome (4.7.0)
     rails-assets-jquery (3.2.1)
     rails-assets-lodash (4.17.4)
+    rails-assets-moment (2.18.1)
+    rails-assets-swipebox (1.4.4)
+    rails-assets-underscore (1.8.3)
+    rails-assets-wow (1.1.2)
     rails-dom-testing (2.0.3)
       activesupport (>= 4.2.0)
       nokogiri (>= 1.6)
@@ -495,7 +501,12 @@ DEPENDENCIES
   rails (~> 5.1.1)
   rails-assets-bootstrap-social (~> 5.1.1)!
   rails-assets-bootstrap-sweetalert (~> 1.0.1)!
+  rails-assets-flot (~> 0.8.3)!
   rails-assets-lodash (~> 4.17.4)!
+  rails-assets-moment (~> 2.18.1)!
+  rails-assets-swipebox (~> 1.4.4)!
+  rails-assets-underscore (~> 1.8.3)!
+  rails-assets-wow (~> 1.1.2)!
   rails_layout
   recaptcha (~> 4.3.1)
   redis (~> 3.3.3)

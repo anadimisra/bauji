@@ -28,8 +28,8 @@ module Bauji
  
  		# Asset config stuff
 		config.assets.enabled = true
-		config.assets.paths << Rails.root.join('app', 'assets', 'fonts')
-		config.assets.paths << Rails.root.join('app', 'assets', 'docs')
+		#config.assets.paths << Rails.root.join('app', 'assets', 'fonts')
+		#config.assets.paths << Rails.root.join('app', 'assets', 'docs')
 
 		# We are in India ofcourse :-) 
 		config.time_zone = 'Asia/Kolkata'
